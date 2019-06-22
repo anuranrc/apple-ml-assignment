@@ -7,8 +7,6 @@ There are two scripts in the module:
 1. ml_server.py
 2. ml_request.py
 
-##### HTTTP Server #####
-
 ### Starting the Server from the terminal on a local machine ###
 
 To start the server from the local machine
