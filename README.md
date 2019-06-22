@@ -71,7 +71,7 @@ python src/server/ml_server.py
 # This will start the server on http://localhost:5000
 ```
 
-### Sending the POST requst to show the predicted results ###
+### Sending the POST request to show the predicted results ###
 
 ### By sending the request from the terminal ###
 1. Open another terminal within the same directory and type the following cURL command:
