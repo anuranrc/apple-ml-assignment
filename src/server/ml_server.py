@@ -82,7 +82,7 @@ def predict():
 @app.route('/', methods=["GET", "POST"], defaults={'path': ''})
 @app.route('/<path:path>', methods=["GET", "POST"])
 def catch_all(path):
-    return 'Path /%s does not exist.' % path
+    return 'Path /%s does not exist.\n' % path
 
 # @app.errorhandler(Exception) 
 # def handle_error(error):
