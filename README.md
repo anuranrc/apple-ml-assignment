@@ -78,9 +78,9 @@ Note: If you experience this error: `ModuleNotFoundError: No module named 'flask
 pip install flask
 ```
 
-### `POST` API call to `/predict` route ###
+## `POST` API call to `/predict` route ##
 
-## Using cURL command ##
+### Using cURL command ###
 1. Open another terminal within the same directory and type the following cURL command:
 ```
 curl -X POST -F image=@'path/to/image.jpg' 'http://localhost:5000/predict'
@@ -125,7 +125,7 @@ Description: This is basically a `POST` request which accepts a single image fil
 # The image used here is of a dog that looks like a golden retriever. (See file imgs/dog.jpg)
 ```
 
-## Running the request file ##
+### Running the request file ###
 1. In the module there is a sript named `ml_request.py` within `src/helper/request/` folder.
 2. Open up a terminal in the project folder and type:
 ```
@@ -138,7 +138,7 @@ python ml_request.py 'C:/Users/Anuran/Desktop/ml deploy project/git repo folder/
 ```
 Description: Here a single image is sent as an argument. This is basicallly a `POST` predict request to show the results in more formatted manner.
 
-### `GET` API call to `/getstatus` route ###
+## `GET` API call to `/getstatus` route ##
 1. While the server is running, open up a terminal in the project folder and type:
 ```
 curl http://localhost:5000/getstatus
