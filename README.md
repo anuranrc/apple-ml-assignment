@@ -70,15 +70,19 @@ cd apple-ml-assignment
 python src/server/ml_server.py
 # This will start the server on http://localhost:5000
 ```
+Note: If you experience this error: `ModuleNotFoundError: No module named 'flask'` then simply install `flask` in your docker environment by:
+```
+pip install flask
+```
 
-### Sending the POST request to show the predicted results ###
+### `POST` API call to `/predict` route ###
 
-### By sending the request from the terminal ###
+## Using cURL command ##
 1. Open another terminal within the same directory and type the following cURL command:
 ```
 curl -X POST -F image=@'path/to/image.jpg' 'http://localhost:5000/predict'
 ```
-example: 
+Example: 
 ```
 curl -X POST -F image=@'abc.jpg' 'http://localhost:5000/predict'
 
@@ -87,20 +91,63 @@ or
 curl -X POST -F image=@'C:/Users/Anuran/Desktop/ml deploy project/git repo folder/apple-ml-assignment/image inputs/abc.jpg' 'http://localhost:5000/predict'
 ```
 Description: This is basically a `POST` request which accepts a single image file and returns the predicted results by running the image against the model. The returned value is in a JSON format.
+```
+# Response:
+{
+    "predictions": [
+        {
+            "label": "golden_retriever",
+            "probability": 0.7136868834495544
+        },
+        {
+            "label": "Chesapeake_Bay_retriever",
+            "probability": 0.08787406235933304
+        },
+        {
+            "label": "vizsla",
+            "probability": 0.060452643781900406
+        },
+        {
+            "label": "Brittany_spaniel",
+            "probability": 0.03629603236913681
+        },
+        {
+            "label": "flat-coated_retriever",
+            "probability": 0.03320077806711197
+        }
+    ],
+    "success": true
+}
 
-### By sending the request through running a script ###
-1. In the module there is a sript named 'ml_request.py' in `src/helper/request/` folder.
-2. Open a terminal in the project folder and type:
+# The image used here is of a dog that looks like a golden retriever. (See file imgs/dog.jpg)
+```
+
+## Running the request file ##
+1. In the module there is a sript named `ml_request.py` within `src/helper/request/` folder.
+2. Open up a terminal in the project folder and type:
 ```
 python src/helper/request/ml_request.py ./path/to/image.jpg
 ```
-
 Example:
 ```
 python ml_request.py 'C:/Users/Anuran/Desktop/ml deploy project/git repo folder/apple-ml-assignment/input_img/abc.jpg'
 # here 'C:/Users/Anuran/Desktop/ml deploy project/git repo folder/apple-ml-assignment/input_img/abc.jpg' is the image path in my local machine.
 ```
 Description: Here a single image is sent as an argument. This is basicallly a `POST` predict request to show the results in more formatted manner.
+
+### `GET` API call to `/getstatus` route ###
+1. While the server is running, open up a terminal in the project folder and type:
+```
+curl http://localhost:5000/getstatus
+```
+Description: This returns back a JSON with the properties `Current Time` and `Version`:
+```
+# Response:
+{
+    "Current Time": "22:09:34",
+    "Version": "1.0.1"
+}
+```
 
 ## Summary:
 1. Open a terminal in the project folder in your docker container running in the EC2 instance or in your local machine
