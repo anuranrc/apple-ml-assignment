@@ -7,6 +7,8 @@
 #   python simple_request.py
 
 # import the necessary packages
+import datetime
+from werkzeug.wrappers import Request, Response
 from keras.applications import ResNet50
 from keras.preprocessing.image import img_to_array
 from keras.applications import imagenet_utils
@@ -37,7 +39,12 @@ def prepare_image(image, target):
     image = imagenet_utils.preprocess_input(image)
     # return the processed image
     return image
-from werkzeug.wrappers import Request, Response
+
+@app.route("/getstatus", methods=["GET"])
+def status():
+    data = {"current time": datetime.datetime.now().time().strftime("%H:%M:%S"), "version": "1.0.1"}
+    return flask.jsonify(data)
+
 @app.route("/predict", methods=["POST"])
 def predict():
         # initialize the data dictionary that will be returned from the
@@ -71,6 +78,17 @@ def predict():
 
         # return the data dictionary as a JSON response
         return flask.jsonify(data)
+
+@app.route('/', methods=["GET", "POST"], defaults={'path': ''})
+@app.route('/<path:path>', methods=["GET", "POST"])
+def catch_all(path):
+    return 'Path /%s does not exist.' % path
+
+# @app.errorhandler(Exception) 
+# def handle_error(error):
+#     response = flask.jsonify(error.to_dict())
+#     response.status_code = error.status_code
+#     return response
 
 # if this is the main thread of execution first load the model and
 # then start the server

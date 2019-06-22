@@ -1,5 +1,6 @@
 # import the necessary packages
 import requests
+import sys
 
 # initialize the Keras REST API endpoint URL along with the input
 # image path
@@ -7,7 +8,7 @@ KERAS_REST_API_URL = "http://localhost:5000/predict"
 IMAGE_PATH = "dog.jpg"
 
 # load the input image and construct the payload for the request
-image = open('C:/Users/Anuran/Desktop/ml deploy project/everest.jpg', "rb").read()
+image = open(sys.argv[1], "rb").read()
 payload = {"image": image}
 
 # submit the request
