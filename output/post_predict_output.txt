@@ -1,0 +1,25 @@
+{
+    "predictions": [
+        {
+            "label": "golden_retriever",
+            "probability": 0.7136868834495544
+        },
+        {
+            "label": "Chesapeake_Bay_retriever",
+            "probability": 0.08787406235933304
+        },
+        {
+            "label": "vizsla",
+            "probability": 0.060452643781900406
+        },
+        {
+            "label": "Brittany_spaniel",
+            "probability": 0.03629603236913681
+        },
+        {
+            "label": "flat-coated_retriever",
+            "probability": 0.03320077806711197
+        }
+    ],
+    "success": true
+}
