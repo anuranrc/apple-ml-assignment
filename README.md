@@ -24,6 +24,11 @@ cd apple-ml-assignment
 python src/server/ml_server.py
 # This will start the server on http://localhost:5000
 ```
+Please note that you may need to have the dependencies installed on your local machine for this to be successful. The dependencies include:
+* Keras
+* Flask
+* Tensorflow
+* numpy
 
 ### Starting the server from the AWS EC2 Instance Docker (Deep Learning Docker Container) ###
 1. Create an AWS account
