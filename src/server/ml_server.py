@@ -42,8 +42,11 @@ def prepare_image(image, target):
 
 @app.route("/getstatus", methods=["GET"])
 def status():
-    data = {"current time": datetime.datetime.now().time().strftime("%H:%M:%S"), "version": "1.0.1"}
-    return flask.jsonify(data)
+	try:
+		data = {"current time": datetime.datetime.now().time().strftime("%H:%M:%S"), "version": "1.0.1"}
+	    return flask.jsonify(data)
+	except Eception as e:
+		return "Error detected"
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -51,7 +54,7 @@ def predict():
         # view
         data = {"success": False}
 
-        # ensure an image was properly uploaded to our endpoint
+        # ensure an image was properly upoaded to our endpoint
         if flask.request.method == "POST":
             if flask.request.files.get("image"):
                     # read the image in PIL format
