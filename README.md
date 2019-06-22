@@ -44,7 +44,7 @@ Example:
 ssh -i ml_apple.pem ubuntu@ec2-107-23-237-121.compute-1.amazonaws.com
 ```
 6. Optional:
-Now after SSH log in succeed type:
+Now after SSH login succeeds, type:
 ```
 aws configure
 ```
