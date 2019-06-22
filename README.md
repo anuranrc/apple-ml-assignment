@@ -60,7 +60,7 @@ docker run -it 763104351884.dkr.ecr.us-east-1.amazonaws.com/tensorflow-training:
 ```
 This will run a Deep Learning Docker Image
 
-8. Clone this repo:
+8. Once you're inside the docker container clone this repo:
 ```
 git clone https://github.com/anuranrc/apple-ml-assignment.git
 ```
