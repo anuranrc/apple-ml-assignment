@@ -42,8 +42,8 @@ def prepare_image(image, target):
 
 @app.route("/getstatus", methods=["GET"])
 def status():
-    data = {"current time": datetime.datetime.now().time().strftime("%H:%M:%S"), "version": "1.0.1"}
-    return flask.jsonify(data)
+	data = {"Current Time": datetime.datetime.now().time().strftime("%H:%M:%S"), "Version": "1.0.1"}
+	return flask.jsonify(data)
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -51,7 +51,7 @@ def predict():
         # view
         data = {"success": False}
 
-        # ensure an image was properly uploaded to our endpoint
+        # ensure an image was properly upoaded to our endpoint
         if flask.request.method == "POST":
             if flask.request.files.get("image"):
                     # read the image in PIL format
@@ -82,13 +82,28 @@ def predict():
 @app.route('/', methods=["GET", "POST"], defaults={'path': ''})
 @app.route('/<path:path>', methods=["GET", "POST"])
 def catch_all(path):
-    return 'Path /%s does not exist.' % path
+    return 'Path /%s does not exist.\n' % path
 
-# @app.errorhandler(Exception) 
-# def handle_error(error):
-#     response = flask.jsonify(error.to_dict())
-#     response.status_code = error.status_code
-#     return response
+class InvalidUsage(Exception):
+    status_code = 400
+
+    def __init__(self, message, status_code=None, payload=None):
+        Exception.__init__(self)
+        self.message = message
+        if status_code is not None:
+            self.status_code = status_code
+        self.payload = payload
+
+    def to_dict(self):
+        rv = dict(self.payload or ())
+        rv['message'] = self.message
+        return rv
+
+@app.errorhandler(InvalidUsage) 
+def handle_error(error):
+     response = flask.jsonify(error.to_dict())
+     response.status_code = error.status_code
+     return response
 
 # if this is the main thread of execution first load the model and
 # then start the server
