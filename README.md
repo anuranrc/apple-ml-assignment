@@ -2,7 +2,7 @@
 
 ## Interacting with the API
 
-To create the HTTP server python based Flask microframework has been used. 
+Python based `Flask` microframework has been used in this assignment to create the HTTP server. 
 There are two scripts in the module: 
 1. ml_server.py
 2. ml_request.py
