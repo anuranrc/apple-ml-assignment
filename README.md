@@ -3,51 +3,70 @@
 ## Interacting with the API
 
 To create the HTTP server python based Flask microframework has been used. 
-There are basically two scripts in the module: 
+There are two scripts in the module: 
 1. ml_server.py
 2. ml_request.py
 
 ##### HTTTP Server #####
 
-### Starting the Server from the terminal in local ###
+### Starting the Server from the terminal in local machine ###
 
 To start the server from the local machine
- 1. Go to the repo folder
- 2. open a terminal
- 3. Type-> python ml_server.py    -->This will start the server in a local port
+ 1. Clone this repo:
+ ```
+ git clone https://github.com/anuranrc/apple-ml-assignment.git
+ ```
+ 2. `cd` into the repo:
+ ```
+ cd apple-ml-assignment
+ ```
+ 3. Open up a terminal
+ 4. Start the server with the following command:
+ ```
+ python ml_server.py
+ # This will start the server on your localhost:5000
+ ```
 
 ### Starting the server from the AWS EC2 Instance Docker (Deep Learning Docker Container) ###
 	1. Create an AWS account
 	2. Launch an EC2 instance: for instance: choose 'AWS Deep Learning Base AMI'
 	3. Select t2.micro for free tier general purpose computation
 	4. Create Key set for access
-	5. Connect to the instance from your local machine: (Connection mechanism varies a little depending on the local machine)
-	Normally open a git bash terminal in the Desktop and type
-	ssh -i pem fodler location ubuntu@public_dns_url
+	5. Connect to the instance from your local machine: (Connection mechanism varies a little depending on your OS. Open up a terminal on Mac or Linux. For Windows open up Git Bash)
+	```
+	ssh -i /path/to/pem/file.pem ubuntu@public_dns_url
+	```
 
-	# Put the path of your private key file in the 'pem _file_location' and the public DNS url of your instance in the public_dns_url
+	# Put the path of your private key file in the 'pem_file_location' and the public DNS url of your instance in the public_dns_url
 
 	example: ssh -i pem_file_location ubuntu@ec2-107-23-237-121.compute-1.amazonaws.com
 
 	Optional:
-	Now after SSH log in succeed Type-> aws configure
+	Now after SSH log in succeed type:
+	```
+	aws configure
+	```
 	put the IAM access key and the secret key to login to Amazon ECR
 
-	Now type--> $(aws ecr get-login --region us-east-1 --no-include-email --registry-ids 763104351884)
-	and it will show login suceeded
-
+	Now type
+	```
+	$(aws ecr get-login --region us-east-1 --no-include-email --registry-ids 763104351884)
+	```
+	It will show Login Succeeded
 
 	6. Running the docker:
-	Then type--> 
+	```
 	docker run -it 763104351884.dkr.ecr.us-east-1.amazonaws.com/tensorflow-training:1.13-cpu-py36-ubuntu16.04
+	```
 	This will run a Deep Learning Docker Image
 
-	7. clone the repo provided in the gihub for this assignment.
+	7. Clone this github repo.
 
 	8. Now start the Server just like how you do it from the local machine.
-	Inside the repo directory
-	Type--> python ml_server.py
-
+	Inside the repo directory, type
+	```
+	python src/server/ml_server.py
+	```
 
 ### Sending the POST requst to show the predicted results ###
 
